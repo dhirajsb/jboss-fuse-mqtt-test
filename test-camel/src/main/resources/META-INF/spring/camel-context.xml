@@ -25,27 +25,27 @@
     <route id="publish-route">
       <from uri="file:work/publish?recursive=true"/>
       <bean beanType="org.jboss.fuse.mqtt.interop.MqttUtil" method="publish"/>
-      <to uri="mqtt:publish?host={{host}}&amp;clientId=publish-route&amp;mqttTopicPropertyName=topicProperty&amp;mqttQosPropertyName=qosProperty&amp;mqttRetainPropertyName=retainProperty"/>
+      <to uri="mqtt:publish?host={{host}}&amp;version=3.1.1&amp;clientId=publish-route&amp;mqttTopicPropertyName=topicProperty&amp;mqttQosPropertyName=qosProperty&amp;mqttRetainPropertyName=retainProperty"/>
       <log message="Publishing message for ${file:name}"/>
       <log message="Done processing ${file:name}"/>
     </route>
 
     <route id="topicA-route">
-      <from uri="mqtt:TopicA?host={{host}}&amp;clientId=topicA-route&amp;subscribeTopicName=TopicA/#&amp;qualityOfService=ExactlyOnce" />
+      <from uri="mqtt:TopicA?host={{host}}&amp;version=3.1.1&amp;clientId=topicA-route&amp;subscribeTopicName=TopicA/#&amp;qualityOfService=ExactlyOnce" />
       <log message="Received message for TopicA/#" />
       <bean beanType="org.jboss.fuse.mqtt.interop.MqttUtil" method="receive"/>
       <to uri="file:work/receive/TopicA" />
     </route>
 
     <route id="topic-route">
-      <from uri="mqtt:topic?host={{host}}&amp;clientId=topic-route&amp;subscribeTopicName=Topic/#&amp;qualityOfService=ExactlyOnce" />
+      <from uri="mqtt:topic?host={{host}}&amp;version=3.1.1&amp;clientId=topic-route&amp;subscribeTopicName=Topic/#&amp;qualityOfService=ExactlyOnce" />
       <log message="Received message for Topic/#" />
       <bean beanType="org.jboss.fuse.mqtt.interop.MqttUtil" method="receive"/>
       <to uri="file:work/receive/Topic" />
     </route>
 
     <route id="slash.topicA-route">
-      <from uri="mqtt:topic?host={{host}}&amp;clientId=slash.topicA-route&amp;subscribeTopicName=/TopicA/#&amp;qualityOfService=ExactlyOnce" />
+      <from uri="mqtt:topic?host={{host}}&amp;version=3.1.1&amp;clientId=slash.topicA-route&amp;subscribeTopicName=/TopicA/#&amp;qualityOfService=ExactlyOnce" />
       <log message="Received message for /TopicA/#" />
       <bean beanType="org.jboss.fuse.mqtt.interop.MqttUtil" method="receive"/>
       <to uri="file:work/receive/.TopicA" />
