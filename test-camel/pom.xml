@@ -24,7 +24,6 @@
   <groupId>org.jboss.fuse.mqtt.interop</groupId>
   <artifactId>test-camel</artifactId>
   <version>1.0-SNAPSHOT</version>
-  <packaging>jar</packaging>
   <name>JBoss Fuse :: MQTT Interop :: Camel Router Test</name>
   <description>Camel Router based interoperability test</description>
 
@@ -52,6 +51,10 @@
     <dependency>
       <groupId>org.apache.camel</groupId>
       <artifactId>camel-mqtt</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-log4j12</artifactId>
     </dependency>
     <dependency>
       <groupId>log4j</groupId>
