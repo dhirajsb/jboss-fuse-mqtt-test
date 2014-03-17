@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>org.jboss.fuse.mqtt.interop</groupId>
+  <artifactId>jboss-fuse-mqtt-test</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <name>JBoss Fuse :: MQTT Interop Root</name>
+  <description>JBoss Fuse MQTT Interoperability Test Root</description>
+
+  <properties>
+    <!-- Explicitly declaring the source encoding eliminates the following message: -->
+    <!-- [WARNING] Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent! -->
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <version.compiler.plugin>2.3.1</version.compiler.plugin>
+    <version.maven-bundle-plugin>2.3.4</version.maven-bundle-plugin>
+
+    <!-- maven-compiler-plugin -->
+    <maven.compiler.target>1.6</maven.compiler.target>
+    <maven.compiler.source>1.6</maven.compiler.source>
+
+    <!-- the version of the JBoss Fuse BOM, defining all the dependency versions -->
+    <jboss.fuse.bom.version>6.1.0.redhat-366</jboss.fuse.bom.version>
+    <camel-maven-plugin.version>2.12.0.redhat-610366</camel-maven-plugin.version>
+  </properties>
+
+  <licenses>
+    <license>
+      <name>Apache License, Version 2.0</name>
+      <distribution>repo</distribution>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
+    </license>
+  </licenses>
+
+  <repositories>
+    <repository>
+      <id>jboss.m2</id>
+      <name>JBoss Community Release Repository</name>
+      <url>http://repository.jboss.org/nexus/content/repositories/releases</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+    </repository>
+    <repository>
+      <id>jboss.ea</id>
+      <name>JBoss Community Early Access Release Repository</name>
+      <url>http://repository.jboss.org/nexus/content/groups/ea</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+    </repository>
+  </repositories>
+
+  <pluginRepositories>
+    <pluginRepository>
+      <id>jboss.m2</id>
+      <name>JBoss Community Release Repository</name>
+      <url>http://repository.jboss.org/nexus/content/repositories/releases</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+    </pluginRepository>
+    <pluginRepository>
+      <id>jboss.ea</id>
+      <name>JBoss Community Early Access Release Repository</name>
+      <url>http://repository.jboss.org/nexus/content/groups/ea</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+    </pluginRepository>
+  </pluginRepositories>
+
+  <build>
+    <finalName>${project.artifactId}</finalName>
+    <plugins>
+      <!-- Compiler plugin enforces Java 1.6 compatibility and activates annotation processors -->
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>${version.compiler.plugin}</version>
+        <configuration>
+          <source>${maven.compiler.source}</source>
+          <target>${maven.compiler.target}</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+  <modules>
+    <module>test-client</module>
+    <module>test-camel</module>
+  </modules>
+
+</project>
