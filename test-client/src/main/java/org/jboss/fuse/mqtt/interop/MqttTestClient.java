@@ -34,6 +34,8 @@ import org.fusesource.mqtt.client.MQTT;
 import org.fusesource.mqtt.client.Message;
 import org.fusesource.mqtt.client.QoS;
 import org.fusesource.mqtt.client.Topic;
+import org.fusesource.mqtt.client.Tracer;
+import org.fusesource.mqtt.codec.MQTTFrame;
 
 /**
  * @author dbokde
@@ -57,13 +59,14 @@ public class MqttTestClient {
     private static final byte[] QOS0_MESSAGE = "qos 0".getBytes();
     private static final byte[] QOS1_MESSAGE = "qos 1".getBytes();
     private static final byte[] QOS2_MESSAGE = "qos 2".getBytes();
-    private static final int RECEIVE_TIMEOUT = 1000;
+    private static final int RECEIVE_TIMEOUT = 3000;
 
     private MQTT mqtt;
 
     public static void main(String[] args) {
         Options options = new Options();
         options.addOption("help", false, "print this message").
+            addOption("trace", false, "enable packet tracing").
             addOption("host", true, "MQTT broker host, default localhost").
             addOption("port", true, "MQTT broker port, default 1883").
             addOption("user", true, "user name").
@@ -97,6 +100,19 @@ public class MqttTestClient {
         // connect
         mqtt = new MQTT();
         mqtt.setVersion("3.1.1");
+        if (commandLine.hasOption("trace")) {
+            mqtt.setTracer(new Tracer() {
+                @Override
+                public void onSend(MQTTFrame frame) {
+                    LOG.info("Client sending " + frame);
+                }
+
+                @Override
+                public void onReceive(MQTTFrame frame) {
+                    LOG.info("Client received " + frame);
+                }
+            });
+        }
         boolean succeded = true;
         try {
             mqtt.setHost(host, port);
