@@ -23,8 +23,9 @@
     <maven.compiler.source>1.6</maven.compiler.source>
 
     <!-- the version of the JBoss Fuse BOM, defining all the dependency versions -->
-    <jboss.fuse.bom.version>6.1.0.redhat-366</jboss.fuse.bom.version>
-    <camel-maven-plugin.version>2.12.0.redhat-610366</camel-maven-plugin.version>
+    <jboss.fuse.build.number>376</jboss.fuse.build.number>
+    <jboss.fuse.bom.version>6.1.0.redhat-${jboss.fuse.build.number}</jboss.fuse.bom.version>
+    <camel-maven-plugin.version>2.12.0.redhat-610${jboss.fuse.build.number}</camel-maven-plugin.version>
   </properties>
 
   <licenses>
