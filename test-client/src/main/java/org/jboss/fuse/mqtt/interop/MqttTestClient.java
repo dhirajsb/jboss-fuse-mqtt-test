@@ -81,7 +81,7 @@ public class MqttTestClient {
             commandLine = parser.parse(options, args);
             if (commandLine.hasOption("help")) {
                 HelpFormatter formatter = new HelpFormatter();
-                formatter.printUsage(new PrintWriter(System.out), 80, "java " + MqttTestClient.class.getName(), options);
+                formatter.printHelp("java " + MqttTestClient.class.getName(), options);
                 return;
             }
             new MqttTestClient().run(commandLine);
